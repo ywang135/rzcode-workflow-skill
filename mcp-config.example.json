@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "rzcode-mcp": {
+      "type": "http",
+      "url": "https://rzcode.vip/mcp",
+      "headers": {
+        "X-API-Key": "<YOUR_API_KEY>"
+      }
+    }
+  }
+}
