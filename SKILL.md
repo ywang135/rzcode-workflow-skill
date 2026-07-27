@@ -1,7 +1,7 @@
 ---
 name: rzcode-workflow-skill
 description: 使用 rzcode-mcp 生成本地软件著作权登记所需文档：软件使用手册、源代码文档、登记申请帮助表格。
-version: 0.5.0
+version: 0.5.1
 applyTo: []
 tools:
   - rzcode_list_projects
@@ -99,7 +99,7 @@ tools:
 1. 确认上传截图方式（用户二选一），**建议一次性上传所有图片**：
    - **方式 A：网页端上传** — 打开 `https://rzcode.vip/home/projects/{project_id}`，让用户一次性选择并上传所有主要界面截图。
    - **方式 B：本地脚本上传** — 用户给出本地截图文件或文件夹路径。由 Agent 从用户已配置的 MCP 配置（如 VS Code 的 `mcpServers.rzcode-mcp`，路径通常为 `~/.vscode/mcp.json` 或工作区 `.vscode/mcp.json`）中解析 `url` 和 `headers.X-API-Key`，然后使用 `run_in_terminal` 执行 `python rzcode-workflow-skill/scripts/upload_image_files.py --project-id {project_id} --url {url} --api-key {api_key} /path/to/screenshots/`。脚本会自动遍历目录、编码图片并通过 `rzcode_upload_images` 上传到项目。
-   > 上传图片后，系统会自动开启图片内容解析任务。**任务完成或彻底失败前，无法再次上传图片**，因此请务必一次性上传所有需要的截图。
+   > 脚本支持 `.png`、`.jpg`、`.jpeg`、`.svg` 格式；如需为图片附加 `type`、`diagram_type`、`diagram_description` 元信息，可使用 `--type`/`--diagram-type`/`--diagram-description` 指定全局默认值，或 `--metadata` 指定 JSON 映射文件。上传图片后，系统会自动开启图片内容解析任务。**任务完成或彻底失败前，无法再次上传图片**，因此请务必一次性上传所有需要的截图。
 2. 等待每张截图状态显示为「已提取/待润色」（用户需不定时点击刷新按钮）。
 3. 调用 `rzcode_get_image_polished_content_requirements` 理解润色要求。
 4. 调用 `rzcode_get_project_status` 获取所有截图的 `extracted_content`。

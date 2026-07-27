@@ -23,7 +23,7 @@
 - **代码不上云**：仅上传项目元信息（如功能模块、技术栈、运行环境），不传输完整源代码。
 - **文档质量更高**：结合真实代码和真实截图，生成内容更贴合实际项目，降低申请补正风险。
 - **操作自动化**：在本地分析代码、生成润色内容，并通过 MCP 工具同步到软宝宝，由软宝宝完成最终排版与 `.docx` 输出。
-- **截图可本地上传**：提供本地脚本 `rzcode-workflow-skill/scripts/upload_image_files.py`，由脚本完成目录遍历、base64 编码和 `rzcode_upload_images` 上传，避免把图片内容加载到 LLM 上下文。
+- **截图可本地上传**：提供本地脚本 `rzcode-workflow-skill/scripts/upload_image_files.py`，支持 `.png`、`.jpg`、`.jpeg`、`.svg`，由脚本完成目录遍历、base64 编码和 `rzcode_upload_images` 上传，避免把图片内容加载到 LLM 上下文；上传时还可为图片附加 `type`、`diagram_type`、`diagram_description` 等元信息。
 
 ---
 
