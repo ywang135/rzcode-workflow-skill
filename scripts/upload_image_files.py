@@ -264,7 +264,15 @@ def _mcp_call_tool(
         headers=headers,
         timeout=120,
     )
-    resp.raise_for_status()
+    try:
+        resp.raise_for_status()
+    except requests.HTTPError as exc:
+        print(f"MCP tool call HTTP error: {exc}", file=sys.stderr)
+        try:
+            print(f"Error details: {resp.json()}", file=sys.stderr)
+        except Exception:
+            print(f"Error response body: {resp.text}", file=sys.stderr)
+        raise
     return resp.json()
 
 
