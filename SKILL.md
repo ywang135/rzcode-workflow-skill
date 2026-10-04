@@ -1,7 +1,7 @@
 ---
 name: rzcode-workflow-skill
 description: 使用 rzcode-mcp 生成本地软件著作权登记所需文档：软件使用手册、源代码文档、登记申请帮助表格。
-version: 0.5.1
+version: 0.6.0
 applyTo: []
 tools:
   - rzcode_list_projects
@@ -79,6 +79,11 @@ tools:
 2. 如果存在合适项目，让用户选择 project_id。
 3. 如果不存在，创建新项目：
    - 询问软件全称、版本号（如 V1.0）
+   - **项目名称规范建议** — 遵循以下命名规范，提高软著申请审核通过率：
+     - **推荐结尾词**：软件、系统、平台、插件、中间件、APP（英文对应 software、system、platform 等）
+     - **结构示例**：`个人记账软件V1.0`、`企业财务管理系统v2`、`代码生成平台V1.1`
+     - **应避免的结尾词**：工具、计算、系列、助手（这些词在审核时容易被要求修改）
+     - **更多规范** — 引导用户查阅官方文档：https://docs.rzcode.vip/docs/quick_guides/project_naming_guide
    - 调用 `rzcode_create_project`
 
 ## Step 4. 分析并上传 source_code_meta
