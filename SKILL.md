@@ -1,7 +1,7 @@
 ---
 name: rzcode-workflow-skill
 description: 使用 rzcode-mcp 生成本地软件著作权登记所需文档：软件使用手册、源代码文档、登记申请帮助表格。
-version: 0.6.0
+version: 0.7.0
 applyTo: []
 tools:
   - rzcode_list_projects
@@ -118,7 +118,7 @@ tools:
   - 每 **60 秒** 调用一次 `rzcode_get_project_status` 轮询任务状态，直到任务 `task_status` 变为 `completed` 或 `failed`。
   - 同时告知用户可在网页端可视化查看任务进度：`https://rzcode.vip/home/projects/{project_id}/?task_id={task_id}`。
 9. 当任务状态为 `completed` 后，自动下载文档：
-  - `https://rzcode.vip/api/projects/{project_id}/guide-docx`
+  - `https://rzcode.vip/api/projects/{project_id}/download/guide`
 10. 若任务状态为 `failed`，向用户返回失败信息并引导其修正后重试。
 
 ## Step 6B. 生成登记申请帮助表格
@@ -134,7 +134,7 @@ tools:
   - 每 **30 秒** 调用一次 `rzcode_get_project_status` 轮询任务状态，直到任务 `task_status` 变为 `completed` 或 `failed`。
   - 同时告知用户可在网页端可视化查看任务进度：`https://rzcode.vip/home/projects/{project_id}/?task_id={task_id}`。
 6. 当任务状态为 `completed` 后，自动下载文档：
-  - `https://rzcode.vip/api/projects/{project_id}/application-form-data-docx`
+  - `https://rzcode.vip/api/projects/{project_id}/download/help`
 7. 若任务状态为 `failed`，向用户返回失败信息并引导其修正后重试。
 
 ## Step 6C. 生成源代码文档
