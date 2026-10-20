@@ -1,0 +1,49 @@
+{
+  "name": "rzcode_upload_image_polished_content",
+  "description": "Upload polished content for a single image in a local RZCode project.",
+  "displayName": "上传图片润色内容",
+  "category": "write",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "project_id": {
+        "type": "integer",
+        "description": "ID of the project"
+      },
+      "file_name": {
+        "type": "string",
+        "description": "Image file name as stored in project.images_meta"
+      },
+      "polished_content": {
+        "type": ["string", "object"],
+        "description": "Polished / refined description of the image"
+      }
+    },
+    "required": ["project_id", "file_name", "polished_content"]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "status": {
+        "type": "string",
+        "enum": ["success"]
+      },
+      "file_name": {
+        "type": "string"
+      },
+      "polished_content": {
+        "type": ["string", "object"]
+      }
+    }
+  },
+  "examples": [
+    {
+      "description": "Upload polished content for an image",
+      "input": {
+        "project_id": 1,
+        "file_name": "screen.png",
+        "polished_content": "The main dashboard showing user statistics and navigation menu"
+      }
+    }
+  ]
+}

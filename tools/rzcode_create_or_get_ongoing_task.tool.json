@@ -1,0 +1,63 @@
+{
+  "name": "rzcode_create_or_get_ongoing_task",
+  "description": "Create a guide/application/image-extraction task, or return an existing ongoing task for the project.",
+  "displayName": "创建或获取任务",
+  "category": "write",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "project_id": {
+        "type": "integer",
+        "description": "Project ID owned by the current user"
+      },
+      "task_type": {
+        "type": "string",
+        "enum": ["GENERATE_GUIDE_DOCX", "GENERATE_APPLICATION_DOCX", "EXTRACT_IMAGE_CONTENT"],
+        "description": "Type of task to create or retrieve"
+      },
+      "additional_requirement": {
+        "type": "string",
+        "description": "Optional text requirement (max 500 characters)"
+      }
+    },
+    "required": ["project_id", "task_type"]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "created": {
+        "type": "boolean",
+        "description": "Whether a new task was created"
+      },
+      "task_id": {
+        "type": "string"
+      },
+      "task_status": {
+        "type": "string"
+      },
+      "task_type": {
+        "type": "string"
+      },
+      "queue_position": {
+        "type": "integer"
+      },
+      "estimated_seconds": {
+        "type": "integer"
+      },
+      "error": {
+        "type": "string",
+        "description": "Error message if created is False"
+      }
+    }
+  },
+  "examples": [
+    {
+      "description": "Create a guide generation task",
+      "input": {
+        "project_id": 1,
+        "task_type": "GENERATE_GUIDE_DOCX",
+        "additional_requirement": "Include API documentation"
+      }
+    }
+  ]
+}

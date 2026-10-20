@@ -1,0 +1,63 @@
+{
+  "name": "rzcode_upload_source_code_meta",
+  "description": "Upload externally generated source_code_meta to a local RZCode project.",
+  "displayName": "上传源代码元数据",
+  "category": "write",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "project_id": {
+        "type": "integer",
+        "description": "ID of the target project"
+      },
+      "extracted_content": {
+        "type": "object",
+        "description": "Required structured description of the codebase, must match the schema from rzcode_get_source_code_meta_requirements"
+      },
+      "summary": {
+        "type": "object",
+        "description": "Optional code statistics"
+      }
+    },
+    "required": ["project_id", "extracted_content"]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "status": {
+        "type": "string",
+        "enum": ["success"]
+      },
+      "source_code_meta": {
+        "type": "object",
+        "description": "Project source_code_meta after saving"
+      }
+    }
+  },
+  "examples": [
+    {
+      "description": "Upload source code metadata",
+      "input": {
+        "project_id": 1,
+        "extracted_content": {
+          "summary": {
+              "total_files": 42,
+              "source_files": 30,
+              "non_source_files": 12,
+              "all_extensions": {".py": 20, ".md": 3, ".toml": 1},
+              "language_stats": {"Python": {"files": 20, "lines": 3200, "size_mb": 0.4}}
+          },
+          "extracted_content": {
+              "title": "demo-project",
+              "version": "0.1.0",
+              "description": "A short demo project.",
+              "main_functionality": ["Feature A", "Feature B"],
+              "main_language": "Python",
+              "main_modules": ["src/ - application logic", "tests/ - test suite"],
+              "other_relevant_info": "Depends on Flask and SQLAlchemy."
+          }
+        }
+      }
+    }
+  ]
+}

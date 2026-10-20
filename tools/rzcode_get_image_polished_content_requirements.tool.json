@@ -1,0 +1,39 @@
+{
+  "name": "rzcode_get_image_polished_content_requirements",
+  "description": "Return the JSON schema and instructions for image polished_content that the user's local agent should produce.",
+  "displayName": "获取图片内容润色要求",
+  "category": "read",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "project_id": {
+        "type": "integer",
+        "description": "Optional project ID to verify ownership. If provided, the project must belong to the authenticated user."
+      }
+    },
+    "required": []
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "schema": {
+        "type": "object",
+        "description": "JSON Schema for polished_content structure"
+      },
+      "instructions": {
+        "type": "string",
+        "description": "Detailed instructions for polishing image content"
+      },
+      "example": {
+        "type": "object",
+        "description": "Example polished content object"
+      }
+    }
+  },
+  "examples": [
+    {
+      "description": "Get image polishing requirements",
+      "input": {}
+    }
+  ]
+}

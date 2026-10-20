@@ -1,0 +1,39 @@
+{
+  "name": "rzcode_get_source_code_meta_requirements",
+  "description": "Return the JSON schema and instructions for source_code_meta that the user's local agent should produce.",
+  "displayName": "获取源代码元数据要求",
+  "category": "read",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "project_id": {
+        "type": "integer",
+        "description": "Optional project ID to verify ownership. If provided, the project must belong to the authenticated user."
+      }
+    },
+    "required": []
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "schema": {
+        "type": "object",
+        "description": "JSON Schema for source_code_meta structure"
+      },
+      "instructions": {
+        "type": "string",
+        "description": "Detailed instructions for filling in the source_code_meta"
+      },
+      "example": {
+        "type": "object",
+        "description": "Example source_code_meta object"
+      }
+    }
+  },
+  "examples": [
+    {
+      "description": "Get source code metadata requirements",
+      "input": {}
+    }
+  ]
+}

@@ -1,0 +1,136 @@
+{
+  "name": "rzcode_get_project_status",
+  "description": "Get project details or task status for a RZCode project.",
+  "displayName": "获取项目状态",
+  "category": "read",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "project_id": {
+        "type": "integer",
+        "description": "ID of the project"
+      },
+      "task_id": {
+        "type": "string",
+        "description": "Optional task ID. If provided, returns only that task's status."
+      }
+    },
+    "required": ["project_id"]
+  },
+  "outputSchema": {
+    "description": "Either a project summary object or a task status object, depending on whether task_id is provided.",
+    "oneOf": [
+      {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer" },
+          "project_id": { "type": "integer" },
+          "user_id": { "type": "integer" },
+          "task_type": { "type": "string" },
+          "task_status": { "type": "string" },
+          "step_title": { "type": ["string", "null"] },
+          "cur_step_progress": { "type": ["number", "null"] },
+          "created_at": { "type": "string" },
+          "last_updated_at": { "type": "string" },
+          "last_message": { "type": ["string", "null"] },
+          "retry_count": { "type": "integer" }
+        }
+      },
+      {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer" },
+          "user_id": { "type": "integer" },
+          "project_name": { "type": "string" },
+          "created_at": { "type": "string" },
+          "last_updated_at": { "type": "string" },
+          "expired_at": { "type": "string" },
+          "days_remaining": { "type": "integer" },
+          "has_source_code_doc": { "type": "boolean" },
+          "has_guide_doc": { "type": "boolean" },
+          "has_design_doc": { "type": "boolean" },
+          "has_application_data_doc": { "type": "boolean" },
+          "has_signature_page": { "type": "boolean" },
+          "files": { "type": "object" },
+          "description": { "type": ["string", "null"] },
+          "status": { "type": "string" },
+          "source_code_meta": { "type": ["object", "null"] },
+          "images_meta": { "type": ["object", "null"] },
+          "images_count": { "type": "integer" },
+          "max_allowed_images_count": { "type": "integer" },
+          "design_doc_config": { "type": ["object", "null"] },
+          "guide_doc_config": { "type": ["object", "null"] },
+          "mode": { "type": "string" },
+          "expedite_paid": { "type": "boolean" },
+          "expedite_paid_at": { "type": ["string", "null"] },
+          "expedite_status": { "type": ["string", "null"] },
+          "expedite_progress": { "type": ["number", "null"] },
+          "is_school_project": { "type": "boolean" },
+          "is_partner_project": { "type": "boolean" },
+          "school_name": { "type": ["string", "null"] },
+          "deleted_at": { "type": ["string", "null"] }
+        }
+      }
+    ]
+  },
+  "examples": [
+    {
+      "description": "Project summary output when task_id is omitted",
+      "input": {
+        "project_id": 1
+      },
+      "output": {
+        "id": 1,
+        "user_id": 10,
+        "project_name": "My App",
+        "created_at": "2024-01-01T00:00:00Z",
+        "last_updated_at": "2024-01-02T00:00:00Z",
+        "expired_at": "2024-12-31T23:59:59Z",
+        "days_remaining": 365,
+        "has_source_code_doc": false,
+        "has_guide_doc": true,
+        "has_design_doc": false,
+        "has_application_data_doc": false,
+        "has_signature_page": false,
+        "files": {},
+        "description": "A sample project",
+        "status": "active",
+        "source_code_meta": null,
+        "images_meta": null,
+        "images_count": 0,
+        "max_allowed_images_count": 20,
+        "design_doc_config": null,
+        "guide_doc_config": null,
+        "mode": "local",
+        "expedite_paid": false,
+        "expedite_paid_at": null,
+        "expedite_status": null,
+        "expedite_progress": null,
+        "is_school_project": false,
+        "is_partner_project": false,
+        "school_name": null,
+        "deleted_at": null
+      }
+    },
+    {
+      "description": "Task status output when task_id is provided",
+      "input": {
+        "project_id": 1,
+        "task_id": "task_123"
+      },
+      "output": {
+        "id": 123,
+        "project_id": 1,
+        "user_id": 10,
+        "task_type": "GENERATE_GUIDE_DOCX",
+        "task_status": "running",
+        "step_title": "Preparing source files",
+        "cur_step_progress": 0.3,
+        "created_at": "2024-01-01T00:00:00Z",
+        "last_updated_at": "2024-01-01T12:00:00Z",
+        "last_message": "Fetching project files",
+        "retry_count": 0
+      }
+    }
+  ]
+}

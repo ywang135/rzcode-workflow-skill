@@ -1,0 +1,73 @@
+{
+  "name": "rzcode_upload_images",
+  "description": "Upload or update images for a RZCode project. Works for both cloud and local projects. Note: For local projects, prefer using scripts/upload_image_files.py to avoid loading images into LLM context.",
+  "displayName": "上传图片",
+  "category": "write",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "project_id": {
+        "type": "integer",
+        "description": "ID of the project"
+      },
+      "images": {
+        "type": "array",
+        "items": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 3,
+          "items": [
+            {
+              "type": "string",
+              "description": "Image file name with extension (must end with .png, .jpg, .jpeg, or .svg). Screenshot name limited to 20 chars, diagram name up to 120 chars."
+            },
+            {
+              "type": "string",
+              "description": "Base64 encoded image content (must decode to < 4MB)"
+            },
+            {
+              "type": ["object", "null"],
+              "description": "Optional metadata with 'type' ('screenshot' or 'diagram'), and for diagrams: 'diagram_type' and optional 'diagram_description'"
+            }
+          ]
+        },
+        "description": "List of (image_name, base64_content, metadata) tuples"
+      }
+    },
+    "required": ["project_id", "images"]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "uploaded_files": {
+        "type": "array",
+        "description": "List of uploaded file names"
+      },
+      "images_count": {
+        "type": "integer"
+      },
+      "new_meta_count": {
+        "type": "integer"
+      },
+      "image_extraction_task_id": {
+        "type": "string",
+        "description": "For local-mode projects, the ID of the created image extraction task"
+      }
+    }
+  },
+  "examples": [
+    {
+      "description": "Upload a single screenshot",
+      "input": {
+        "project_id": 1,
+        "images": [
+          [
+            "screen.png",
+            "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==",
+            {"type": "screenshot"}
+          ]
+        ]
+      }
+    }
+  ]
+}

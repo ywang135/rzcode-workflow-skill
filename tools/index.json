@@ -1,0 +1,130 @@
+{
+  "toolIndex": {
+    "readOperations": {
+      "category": "Read/Query Operations",
+      "description": "Tools for retrieving information without modifying state",
+      "tools": [
+        {
+          "name": "rzcode_list_projects",
+          "displayName": "列出项目",
+          "file": "rzcode_list_projects.tool.json",
+          "description": "List projects with filtering and pagination"
+        },
+        {
+          "name": "rzcode_get_project_status",
+          "displayName": "获取项目状态",
+          "file": "rzcode_get_project_status.tool.json",
+          "description": "Get project status including metadata and image extraction progress"
+        },
+        {
+          "name": "rzcode_get_source_code_doc_rules",
+          "displayName": "获取源代码文档规则",
+          "file": "rzcode_get_source_code_doc_rules.tool.json",
+          "description": "Get source code documentation rules and requirements"
+        },
+        {
+          "name": "rzcode_get_source_code_meta_requirements",
+          "displayName": "获取源代码元数据要求",
+          "file": "rzcode_get_source_code_meta_requirements.tool.json",
+          "description": "Get metadata schema and requirements for source code"
+        },
+        {
+          "name": "rzcode_get_image_polished_content_requirements",
+          "displayName": "获取图片内容润色要求",
+          "file": "rzcode_get_image_polished_content_requirements.tool.json",
+          "description": "Get requirements for polishing extracted image content"
+        }
+      ]
+    },
+    "writeOperations": {
+      "category": "Write/Mutation Operations",
+      "description": "Tools for creating or modifying data",
+      "tools": [
+        {
+          "name": "rzcode_create_project",
+          "displayName": "创建项目",
+          "file": "rzcode_create_project.tool.json",
+          "description": "Create a new project for copyright registration"
+        },
+        {
+          "name": "rzcode_create_or_get_ongoing_task",
+          "displayName": "创建或获取任务",
+          "file": "rzcode_create_or_get_ongoing_task.tool.json",
+          "description": "Create document generation or image extraction task"
+        },
+        {
+          "name": "rzcode_upload_source_code_meta",
+          "displayName": "上传源代码元数据",
+          "file": "rzcode_upload_source_code_meta.tool.json",
+          "description": "Upload source code metadata to project"
+        },
+        {
+          "name": "rzcode_upload_images",
+          "displayName": "上传图片",
+          "file": "rzcode_upload_images.tool.json",
+          "description": "Upload images for screenshot extraction"
+        },
+        {
+          "name": "rzcode_upload_image_polished_content",
+          "displayName": "上传图片润色内容",
+          "file": "rzcode_upload_image_polished_content.tool.json",
+          "description": "Upload polished content for extracted images"
+        }
+      ]
+    }
+  },
+  "toolsByWorkflow": {
+    "softwareGuide": {
+      "name": "软件使用手册 (Software Guide)",
+      "steps": [
+        "rzcode_list_projects",
+        "rzcode_create_project",
+        "rzcode_get_project_status",
+        "rzcode_upload_images",
+        "rzcode_get_image_polished_content_requirements",
+        "rzcode_upload_image_polished_content",
+        "rzcode_create_or_get_ongoing_task"
+      ]
+    },
+    "sourceCodeDocumentation": {
+      "name": "源代码文档 (Source Code Documentation)",
+      "steps": [
+        "rzcode_list_projects",
+        "rzcode_create_project",
+        "rzcode_get_source_code_doc_rules",
+        "rzcode_get_source_code_meta_requirements",
+        "rzcode_upload_source_code_meta",
+        "rzcode_get_project_status"
+      ]
+    },
+    "registrationApplication": {
+      "name": "登记申请 (Registration Application)",
+      "steps": [
+        "rzcode_list_projects",
+        "rzcode_create_project",
+        "rzcode_get_project_status",
+        "rzcode_create_or_get_ongoing_task"
+      ]
+    },
+    "completeWorkflow": {
+      "name": "完整工作流 (Complete Workflow)",
+      "description": "Full workflow generating all three documents",
+      "steps": [
+        "rzcode_create_project",
+        "rzcode_upload_images",
+        "rzcode_get_source_code_meta_requirements",
+        "rzcode_upload_source_code_meta",
+        "rzcode_get_image_polished_content_requirements",
+        "rzcode_upload_image_polished_content",
+        "rzcode_get_project_status",
+        "rzcode_create_or_get_ongoing_task"
+      ]
+    }
+  },
+  "summary": {
+    "totalTools": 10,
+    "readTools": 5,
+    "writeTools": 5,
+    "lastUpdated": "2024-10-20"
+  }
+}

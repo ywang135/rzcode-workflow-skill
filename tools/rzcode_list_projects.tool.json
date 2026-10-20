@@ -1,0 +1,71 @@
+{
+  "name": "rzcode_list_projects",
+  "description": "List the current user's RZCode projects. Defaults to local-cooperation mode.",
+  "displayName": "列出项目",
+  "category": "read",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "mode": {
+        "type": "string",
+        "enum": ["cloud", "local"],
+        "description": "Filter by project mode ('cloud' or 'local'). Default: 'local'.",
+        "default": "local"
+      },
+      "status": {
+        "type": "string",
+        "enum": ["active", "expired", "all"],
+        "description": "Filter by project status. Default: 'active'.",
+        "default": "active"
+      },
+      "page": {
+        "type": "integer",
+        "description": "Page number (1-based). Default: 1.",
+        "default": 1
+      },
+      "limit": {
+        "type": "integer",
+        "description": "Items per page (max 100). Default: 20.",
+        "default": 20
+      },
+      "sort": {
+        "type": "string",
+        "enum": ["created_at", "updated_at", "expired_at"],
+        "description": "Sort field. Default: 'updated_at'.",
+        "default": "updated_at"
+      }
+    },
+    "required": []
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "projects": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "description": "Project object with id, project_name, mode, created_at, expired_at, status, etc."
+        }
+      },
+      "total": {
+        "type": "integer",
+        "description": "Total number of projects"
+      },
+      "page": {
+        "type": "integer"
+      },
+      "limit": {
+        "type": "integer"
+      }
+    }
+  },
+  "examples": [
+    {
+      "description": "List local active projects",
+      "input": {
+        "mode": "local",
+        "status": "active"
+      }
+    }
+  ]
+}

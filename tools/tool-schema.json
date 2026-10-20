@@ -1,0 +1,85 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "RZCode Tool Declaration Schema",
+  "description": "JSON Schema for RZCode MCP tool declarations",
+  "type": "object",
+  "required": [
+    "name",
+    "description",
+    "displayName",
+    "category",
+    "endpoint",
+    "inputSchema",
+    "outputSchema"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "pattern": "^rzcode_[a-z_]+$",
+      "description": "Unique tool identifier (must start with 'rzcode_')"
+    },
+    "description": {
+      "type": "string",
+      "description": "English description of what the tool does"
+    },
+    "displayName": {
+      "type": "string",
+      "description": "Chinese display name for user interface"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["read", "write"],
+      "description": "Tool category: 'read' for queries, 'write' for mutations"
+    },
+    "endpoint": {
+      "type": "string",
+      "description": "HTTP endpoint pattern (e.g., 'POST /api/projects', 'GET /api/projects/{project_id}')"
+    },
+    "inputSchema": {
+      "type": "object",
+      "description": "JSON Schema for input parameters",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "object"
+        },
+        "properties": {
+          "type": "object",
+          "description": "Input parameter definitions"
+        },
+        "required": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "List of required parameter names"
+        }
+      },
+      "required": ["type", "properties"]
+    },
+    "outputSchema": {
+      "type": "object",
+      "description": "JSON Schema for output/response"
+    },
+    "examples": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "input": {
+            "type": "object"
+          },
+          "output": {
+            "type": "object"
+          }
+        },
+        "required": ["description", "input"]
+      },
+      "description": "Usage examples"
+    }
+  },
+  "additionalProperties": false
+}

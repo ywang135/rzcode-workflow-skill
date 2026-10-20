@@ -1,7 +1,7 @@
 ---
 name: rzcode-workflow-skill
 description: 使用 rzcode-mcp 生成本地软件著作权登记所需文档：软件使用手册、源代码文档、登记申请帮助表格。
-version: 0.7.0
+version: 0.8.0
 applyTo: []
 tools:
   - rzcode_list_projects
@@ -27,6 +27,8 @@ tools:
 
 - "使用手册"和 "登记申请" 不要自行编写业务代码，所有操作通过 rzcode-mcp 工具或 Agent 自带能力完成。
 - "源代码" 需理解规则后，编写业务代码，完成 Word 文档。
+- 所有 tool 的 `inputSchema` / `outputSchema` 以 `tools/*.tool.json` 声明为准；如工具参数不明确，优先读取对应 JSON 文件再调用 MCP 工具。
+- 相关工具声明位于 `tools/` 目录，Agent 可用 `read_file` / `list_dir` 读取目录中的工具定义以核对参数和返回值。
 - 遇到 MCP 未配置时，必须引导用户到 https://rzcode.vip/settings 生成 API key 并配置。
 - 操作过程中必须和用户确认关键信息：代码文件夹、项目选择、截图、更新 source_code_meta 等。
 - 生成文档时，需消耗用户在 rzcode.vip 的积分(credits)，若积分不足，请提示用户前往 https://rzcode.vip/purchase 充值。

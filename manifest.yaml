@@ -1,0 +1,68 @@
+name: rzcode-workflow-skill
+version: 0.8.0
+
+metadata:
+  display_name: "RZCode Workflow Skill"
+  description: "通过 rzcode-mcp 生成本地软件著作权登记所需文档：软件使用手册、源代码文档、登记申请帮助表格。"
+  author: "Yi Wang"
+  maintainer: "RZCode Team"
+  license: "MIT"
+  keywords:
+    - rzcode
+    - workflow
+    - software_registration
+    - documentation
+    - mcp
+    - soft_copyright
+  category: "document_generation"
+  tags:
+    - rzcode
+    - workflow
+    - soft_copyright
+    - document
+    - agent_skill
+
+entry_point: SKILL.md
+
+tools:
+  - path: tools/rzcode_list_projects.tool.json
+  - path: tools/rzcode_create_project.tool.json
+  - path: tools/rzcode_create_or_get_ongoing_task.tool.json
+  - path: tools/rzcode_get_project_status.tool.json
+  - path: tools/rzcode_get_source_code_doc_rules.tool.json
+  - path: tools/rzcode_get_source_code_meta_requirements.tool.json
+  - path: tools/rzcode_upload_source_code_meta.tool.json
+  - path: tools/rzcode_get_image_polished_content_requirements.tool.json
+  - path: tools/rzcode_upload_image_polished_content.tool.json
+  - path: tools/rzcode_upload_images.tool.json
+
+requirements:
+  python: ">=3.9"
+  packages: []
+
+agent_compatibility:
+  - copilot
+  - codex
+  - claude
+  - workbuddy
+  - codebase_agent
+
+capabilities:
+  read:
+    - project
+    - task
+    - source_code_meta
+    - image_requirements
+  write:
+    - project
+    - task
+    - source_code_meta
+    - image_polished_content
+    - image_upload
+  update:
+    - project
+    - task
+  query:
+    - project_status
+    - task_status
+    - project_listing

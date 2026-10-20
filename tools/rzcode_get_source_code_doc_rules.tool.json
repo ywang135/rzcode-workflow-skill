@@ -1,0 +1,45 @@
+{
+  "name": "rzcode_get_source_code_doc_rules",
+  "description": "Return the rules for generating a source code Word document for a local project. Requires a valid local project_id.",
+  "displayName": "获取源代码文档生成规则",
+  "category": "read",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "project_id": {
+        "type": "integer",
+        "description": "ID of a local project owned by the authenticated user"
+      }
+    },
+    "required": ["project_id"]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "project_id": {
+        "type": "integer"
+      },
+      "project_name": {
+        "type": "string"
+      },
+      "mode": {
+        "type": "string"
+      },
+      "has_source_code_doc": {
+        "type": "boolean"
+      },
+      "rules": {
+        "type": "string",
+        "description": "Detailed rules for text extraction, formatting, pagination, header/footer, and output"
+      }
+    }
+  },
+  "examples": [
+    {
+      "description": "Get source code documentation rules",
+      "input": {
+        "project_id": 1
+      }
+    }
+  ]
+}

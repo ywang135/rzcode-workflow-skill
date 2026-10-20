@@ -1,0 +1,56 @@
+{
+  "name": "rzcode_create_project",
+  "description": "Create a new RZCode project. Defaults to local-cooperation mode.",
+  "displayName": "创建项目",
+  "category": "write",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "project_name": {
+        "type": "string",
+        "description": "Name of the project (max 255 characters)"
+      },
+      "mode": {
+        "type": "string",
+        "enum": ["cloud", "local"],
+        "description": "Project mode. Default: 'local'.",
+        "default": "local"
+      }
+    },
+    "required": ["project_name"]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "project_id": {
+        "type": "integer"
+      },
+      "project_name": {
+        "type": "string"
+      },
+      "mode": {
+        "type": "string"
+      },
+      "created_at": {
+        "type": "string",
+        "description": "ISO 8601 timestamp with Z suffix"
+      },
+      "expired_at": {
+        "type": "string",
+        "description": "ISO 8601 timestamp with Z suffix"
+      },
+      "status": {
+        "type": "string"
+      }
+    }
+  },
+  "examples": [
+    {
+      "description": "Create a local project",
+      "input": {
+        "project_name": "My App",
+        "mode": "local"
+      }
+    }
+  ]
+}
