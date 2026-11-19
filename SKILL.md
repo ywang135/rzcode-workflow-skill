@@ -1,7 +1,7 @@
 ---
 name: rzcode-workflow-skill
 description: 使用 rzcode-mcp 生成本地软件著作权登记所需文档：软件使用手册、源代码文档、登记申请帮助表格。
-version: 0.8.0
+version: 0.9.0
 applyTo: []
 tools:
   - rzcode_list_projects
@@ -40,6 +40,7 @@ tools:
 - 提及 "使用手册" / "manual" / "软件使用手册" → Step 6A
 - 提及 "登记申请" / "申请帮助" / "help table" / "表格" → Step 6B
 - 提及 "源代码" / "source code" / "代码文档" → Step 6C
+- 提及 "AIGC" / "AIGC 检查" / "预检" / "precheck" → AIGC 检查流程，参见 `instructions/aigc_precheck.md`（独立分支，不需要执行 Step 4-5）
 - 提及 "全部" / "all" / "都生成" → 依次执行 Step 6A → 6B → 6C（共享 Step 1-5）
 
 # 统一准备流程（Step 1-5）

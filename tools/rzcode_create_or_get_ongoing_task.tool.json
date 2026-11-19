@@ -1,6 +1,6 @@
 {
   "name": "rzcode_create_or_get_ongoing_task",
-  "description": "Create a guide/application/image-extraction task, or return an existing ongoing task for the project.",
+  "description": "Create a guide/application/image-extraction/AIGC-precheck task, or return an existing ongoing task for the project.",
   "displayName": "创建或获取任务",
   "category": "write",
   "inputSchema": {
@@ -12,7 +12,7 @@
       },
       "task_type": {
         "type": "string",
-        "enum": ["GENERATE_GUIDE_DOCX", "GENERATE_APPLICATION_DOCX", "EXTRACT_IMAGE_CONTENT"],
+        "enum": ["GENERATE_GUIDE_DOCX", "GENERATE_APPLICATION_DOCX", "EXTRACT_IMAGE_CONTENT", "PRECHECK_SOURCE_CODE_AIGC"],
         "description": "Type of task to create or retrieve"
       },
       "additional_requirement": {
